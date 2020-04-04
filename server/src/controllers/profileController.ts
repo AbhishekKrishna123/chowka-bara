@@ -23,7 +23,7 @@ export class ProfileController {
         profile.modifiedDateTime = new Date();
 
         try {
-            let result = await Database.db.collection(this.collection).insertOne(profile);
+            const result = await Database.db.collection(this.collection).insertOne(profile);
             return {
                 _id: result.insertedId
             };
@@ -41,11 +41,11 @@ export class ProfileController {
     async getProfile(@PathParam("_id") _id: string) {
 
         try {
-            let cursor = await Database.db.collection(this.collection).find({
+            const cursor = await Database.db.collection(this.collection).find({
                 _id: new ObjectId(_id)
             });
 
-            let result = (await cursor.toArray())[0];
+            const result = (await cursor.toArray())[0];
 
             return result;
         } catch {
@@ -60,9 +60,9 @@ export class ProfileController {
     async getAllProfiles() {
 
         try {
-            let cursor = await Database.db.collection(this.collection).find();
+            const cursor = await Database.db.collection(this.collection).find();
 
-            let result = (await cursor.toArray());
+            const result = (await cursor.toArray());
 
             return result;
         } catch {
@@ -93,7 +93,7 @@ export class ProfileController {
         try {
             await Database.db.collection(this.collection).deleteOne({
                 _id: new ObjectId(_id)
-            })
+            });
         } catch {
             throw new Error("Error deleting profile!");
         }

@@ -2,7 +2,7 @@ import express from "express";
 import compression from "compression";
 import bodyParser from "body-parser";
 import path from "path";
-import * as http from 'http';
+import * as http from "http";
 import cors from "cors";
 import { Server } from "typescript-rest";
 import app from "./app";

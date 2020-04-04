@@ -23,11 +23,11 @@ export class GameRules implements IGameRules {
      */
     getRemainingDistances(state: IGameState): number[] {
 
-        let remainingDistances: number[] = [];
+        const remainingDistances: number[] = [];
 
-        for (let i:number = 0; i < this.NUM_PAWNS; i++) {
+        for (let i: number = 0; i < this.NUM_PAWNS; i++) {
             let remDist: number = 0;
-            let pawnPos: number = state.players[state.turn].pawns[i];
+            const pawnPos: number = state.players[state.turn].pawns[i];
 
             // take care of kill not yet done
             if (state.players[state.turn].hasKilled === true) {
@@ -50,12 +50,12 @@ export class GameRules implements IGameRules {
     validateRoll(state: IGameState): void {
 
         /* Roll can be invalid if triple 4s or 8s are rolled */
-        let curMove: Move = state.moves[state.moves.length-1];
+        const curMove: Move = state.moves[state.moves.length-1];
         // compare with last 2 moves
         if (curMove.roll === 4 || curMove.roll === 8) {
 
-            let prev1: Move = state.moves[state.moves.length-2];
-            let prev2: Move = state.moves[state.moves.length-3];
+            const prev1: Move = state.moves[state.moves.length-2];
+            const prev2: Move = state.moves[state.moves.length-3];
 
             if (
                 curMove.roll === prev1.roll && curMove.roll === prev2.roll &&
@@ -66,9 +66,9 @@ export class GameRules implements IGameRules {
         }
 
         // roll can be invalid if all the pending moves cannot be made
-        let remainingDistances: number[] = this.getRemainingDistances(state);
+        const remainingDistances: number[] = this.getRemainingDistances(state);
 
-        let currentRoll: number = state.moves[state.moves.length-1].roll;
+        const currentRoll: number = state.moves[state.moves.length-1].roll;
 
         let isValid: boolean = false;
         for (let i: number = 0; i < remainingDistances.length; i++) {
@@ -88,9 +88,9 @@ export class GameRules implements IGameRules {
      */
     validateMove(state: IGameState): void {
 
-        let curMove: Move = state.moves[state.moves.length-1];
+        const curMove: Move = state.moves[state.moves.length-1];
 
-        let remainingDistances: number[] = this.getRemainingDistances(state);
+        const remainingDistances: number[] = this.getRemainingDistances(state);
 
         // the selected pawn should have distance to move forward
         if (remainingDistances[curMove.pawn] < curMove.roll) {
@@ -98,13 +98,13 @@ export class GameRules implements IGameRules {
         }
 
         // in outer ring, same player pawn cannot be in the same square
-        let curPlayer: Player = state.players[state.turn];
+        const curPlayer: Player = state.players[state.turn];
         for (let i: number=0; i<this.NUM_PAWNS; i++) {
             // don't compare the moved pawn with itself
             if (curMove.pawn != i) {
                 // check if pawns are on the same square
                 if (curPlayer.pawns[i] === curMove.pawn) {
-                    let pos: number = curMove.pawn;
+                    const pos: number = curMove.pawn;
 
                     // the position is outside and is not a safe square
                     if (

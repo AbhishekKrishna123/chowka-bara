@@ -10,10 +10,10 @@ import { GameController } from "./controllers/gameController";
 import { ProfileController } from "./controllers/profileController";
 
 // create Express app
-let app: express.Application = express();
+const app: express.Application = express();
 
 // Express configuration
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }));
 app.use(cors());
 app.use(compression());
 app.use(bodyParser.json());

@@ -27,7 +27,7 @@ export class Database {
 
     static async disconnect(): Promise<any> {
         if (this.client) {
-            await this.client.close()
+            await this.client.close();
         }
     }
 }

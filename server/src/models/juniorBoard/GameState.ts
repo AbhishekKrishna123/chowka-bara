@@ -38,7 +38,7 @@ export class GameState implements IGameState {
     }
 
     removePlayer(id: number): void {
-        let prevLength: number = this.players.length;
+        const prevLength: number = this.players.length;
 
         this.players = this.players.map(player => {
             if (player.id !== id) {

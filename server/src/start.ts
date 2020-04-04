@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-import { ApiServer } from './api-server';
+import { ApiServer } from "./api-server";
 import { Database } from "./database";
 
 export async function start(): Promise<void> {
@@ -16,6 +16,6 @@ export async function start(): Promise<void> {
     };
 
     // Stop graceful
-    process.on('SIGTERM', graceful);
-    process.on('SIGINT', graceful);
+    process.on("SIGTERM", graceful);
+    process.on("SIGINT", graceful);
 }
